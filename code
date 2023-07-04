@@ -1,0 +1,20 @@
+import instaloader
+
+def download_profile_picture(username):
+    # Create an instance of Instaloader
+    loader = instaloader.Instaloader()
+
+    try:
+        # Retrieve the profile of the given username
+        profile = instaloader.Profile.from_username(loader.context, username)
+        # Download the profile picture
+        loader.download_profilepic(profile.username, profile_pic_name=username)
+        print(f"Profile picture downloaded for {username}")
+    except instaloader.exceptions.ProfileNotExistsException:
+        print(f"Profile '{username}' does not exist")
+
+# Provide the Instagram username for which you want to download the profile picture
+username = "example_username"
+
+# Call the function to download the profile picture
+download_profile_picture(username)
